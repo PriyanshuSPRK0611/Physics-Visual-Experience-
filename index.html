@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Physics Visual Experience — Virtual Physics Laboratory</title>
+<meta name="description" content="A virtual physics laboratory. Walk into real experiments, run them in real time, and watch physics obey its own rules — starting with Rutherford's gold foil experiment." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='8' fill='%23f1c453'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(60 50 50)'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(120 50 50)'/></svg>" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="atom" aria-hidden="true"></span>
+      <span>Physics Visual Experience<small>Virtual Laboratory</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="#chapters">Experiments</a>
+      <a href="#how">How it works</a>
+      <a href="experiments/gold-foil.html">Gold Foil Lab</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Immersive · Real-time · Physics-accurate</div>
+    <h1>Step inside a real physics lab — <span class="grad">without leaving your screen.</span></h1>
+    <p class="lead">
+      Physics Visual Experience is a virtual laboratory. Instead of reading about an experiment,
+      you walk up to the apparatus, switch it on, and watch it behave the way nature actually
+      behaves. Every particle obeys real equations — you are not watching an animation, you are
+      watching physics run.
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="experiments/gold-foil.html">▶ Enter the Gold Foil Lab</a>
+      <a class="btn ghost" href="#chapters">Browse chapters</a>
+    </div>
+
+    <div class="stat-strip">
+      <div class="cell"><b>01</b><span>Experiment live now</span></div>
+      <div class="cell"><b>06</b><span>Chapters planned</span></div>
+      <div class="cell"><b>Real&#8209;time</b><span>Coulomb physics engine</span></div>
+      <div class="cell"><b>0</b><span>Installs required</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="chapters">
+    <div class="section-head">
+      <div>
+        <h2>Chapters &amp; experiments</h2>
+        <p>Each chapter opens as a full laboratory bench — apparatus, controls, live data and a guided observation log.</p>
+      </div>
+      <span class="pill ready">1 available</span>
+    </div>
+
+    <div class="grid">
+
+      <a class="card" href="experiments/gold-foil.html">
+        <div class="tag">Modern Physics · Atomic Structure</div>
+        <h3>Rutherford's Gold Foil Experiment</h3>
+        <p>Fire alpha particles at a sheet of gold foil and discover why almost all of them pass straight through — while a rare few bounce straight back.</p>
+        <div class="foot">
+          <span class="pill ready">● Live</span>
+          <span class="go">Open the lab →</span>
+        </div>
+      </a>
+
+      <div class="card locked">
+        <div class="tag">Mechanics · Kinematics</div>
+        <h3>Projectile Motion Range</h3>
+        <p>Launch, aim and measure — with real gravity and air drag shaping every arc.</p>
+        <div class="foot"><span class="pill soon">In development</span><span class="go">Soon</span></div>
+      </div>
+
+      <div class="card locked">
+        <div class="tag">Optics · Waves</div>
+        <h3>Interference &amp; Diffraction</h3>
+        <p>A laser bench where slit width and spacing reshape the fringes live on screen.</p>
+        <div class="foot"><span class="pill soon">In development</span><span class="go">Soon</span></div>
+      </div>
+
+      <div class="card locked">
+        <div class="tag">Electromagnetism</div>
+        <h3>Electromagnetic Induction</h3>
+        <p>Move a magnet through a coil and watch induced EMF build, spike and reverse.</p>
+        <div class="foot"><span class="pill soon">In development</span><span class="go">Soon</span></div>
+      </div>
+
+      <div class="card locked">
+        <div class="tag">Modern Physics · Quantum</div>
+        <h3>Photoelectric Effect</h3>
+        <p>Change the light's colour and intensity and watch the electrons respond — or refuse to.</p>
+        <div class="foot"><span class="pill soon">In development</span><span class="go">Soon</span></div>
+      </div>
+
+      <div class="card locked">
+        <div class="tag">Oscillations</div>
+        <h3>Simple Harmonic Motion</h3>
+        <p>A spring-mass bench with damping, live energy bars and a phase-space trace.</p>
+        <div class="foot"><span class="pill soon">In development</span><span class="go">Soon</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="section-head">
+      <div>
+        <h2>Why it feels like a real lab</h2>
+        <p>Four things separate a demonstration from an experiment. All four are built in.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <span class="num">/ 01</span>
+        <h4>Real apparatus</h4>
+        <p>Radium source, lead collimator, gold foil and a fluorescent screen — laid out the way they sat on the bench in 1909, so the setup itself teaches you something.</p>
+      </div>
+      <div class="note">
+        <span class="num">/ 02</span>
+        <h4>Real physics, not playback</h4>
+        <p>Every alpha particle is integrated through the Coulomb force in real time. The scattering angles you see are computed, not drawn.</p>
+      </div>
+      <div class="note">
+        <span class="num">/ 03</span>
+        <h4>Live data</h4>
+        <p>Counters, an angle-resolved detector and a filling histogram turn the show into measurements you can actually read off.</p>
+      </div>
+      <div class="note">
+        <span class="num">/ 04</span>
+        <h4>Guided observation</h4>
+        <p>An observation log records the remarkable events as they happen, then hands you the conclusion Rutherford had to reach.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conclusion">
+      <h3>Start with the experiment that redrew the atom</h3>
+      <p>
+        In 1909, Geiger and Marsden fired alpha particles at gold foil expecting them to sail through.
+        About one in every few thousand came straight back. Rutherford said it was "almost as incredible
+        as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you."
+      </p>
+      <p>Open the lab and see it for yourself — the beam, the flashes, the numbers and the conclusion.</p>
+      <a class="btn primary" href="experiments/gold-foil.html" style="margin-top:8px">▶ Run the experiment</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Physics Visual Experience — built for students who want to <em>feel</em> the physics.</span>
+    <span><a href="experiments/gold-foil.html">Gold Foil Lab</a> · <a href="#chapters">Experiments</a></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

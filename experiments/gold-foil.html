@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rutherford's Gold Foil Experiment — Physics Visual Experience</title>
+<meta name="description" content="An interactive, physics-accurate simulation of Rutherford's gold foil experiment. Fire alpha particles at gold foil, watch them scatter, and read the live detector data." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='8' fill='%23f1c453'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(60 50 50)'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(120 50 50)'/></svg>" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../index.html">
+      <span class="atom" aria-hidden="true"></span>
+      <span>Physics Visual Experience<small>Virtual Laboratory</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="gold-foil.html" class="active">Gold Foil Lab</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section style="padding:26px 0 6px">
+    <div class="eyebrow">Experiment 01 · Modern Physics · Atomic Structure</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div>
+        <h1 style="font-size:clamp(26px,4vw,40px)">Rutherford's Gold Foil Experiment</h1>
+        <p class="lead" style="margin-top:12px;max-width:70ch">
+          Alpha particles are fired at a thin sheet of gold. Almost every one sails straight through.
+          A rare few are flung far off course — and now and then one comes straight back.
+          Watch it happen, then read the numbers behind it.
+        </p>
+      </div>
+      <span class="live"><span class="dot"></span> Lab online</span>
+    </div>
+  </section>
+
+  <section class="lab">
+
+    <!-- ===================== STAGE ===================== -->
+    <div>
+      <div class="stage" id="stage">
+        <canvas id="stageCanvas"></canvas>
+        <div class="stage-label" id="stageLabel">Vacuum chamber — α-particle beam &amp; gold foil</div>
+        <div class="hud">
+          <div class="readout" id="hudEmitted">α emitted&nbsp; <b>0</b></div>
+          <div class="readout" id="hudBack">θ &gt; 90°&nbsp; <b>0</b></div>
+          <div class="readout" id="hudDet">detector @ 60°&nbsp; <b>0</b></div>
+        </div>
+      </div>
+
+      <div class="chart-box" style="margin-top:16px">
+        <div class="section-head" style="margin-bottom:14px">
+          <div>
+            <h2 style="font-size:19px">Scattering-angle distribution</h2>
+            <p style="font-size:13px">Counts per 10° bin, filled live as particles are recorded.</p>
+          </div>
+          <span class="pill" id="histModePill">linear</span>
+        </div>
+        <canvas id="histCanvas"></canvas>
+      </div>
+    </div>
+
+    <!-- ===================== PANEL ===================== -->
+    <aside>
+
+      <div class="panel">
+        <h4>Apparatus</h4>
+
+        <div class="field">
+          <label for="material">Foil material <span class="val" id="materialZ">Z = 79</span></label>
+          <select id="material">
+            <option value="gold" selected>Gold (Au) — Z = 79</option>
+            <option value="silver">Silver (Ag) — Z = 47</option>
+            <option value="copper">Copper (Cu) — Z = 29</option>
+            <option value="aluminium">Aluminium (Al) — Z = 13</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="energy">α-particle energy <span class="val" id="energyVal">5.0 MeV</span></label>
+          <input type="range" id="energy" min="4" max="8" step="0.5" value="5" />
+        </div>
+
+        <div class="field">
+          <label for="thickness">Foil thickness <span class="val" id="thickVal">0.40 µm</span></label>
+          <input type="range" id="thickness" min="0.1" max="3" step="0.1" value="0.4" />
+        </div>
+
+        <div class="field">
+          <label for="rate">Beam intensity <span class="val" id="rateVal">2.0 × 10⁴ /s</span></label>
+          <input type="range" id="rate" min="3" max="6" step="0.1" value="4.3" />
+        </div>
+
+        <div class="field" id="bField" style="display:none">
+          <label for="impact">Impact parameter b <span class="val" id="bVal">1.00 r₀′</span></label>
+          <input type="range" id="impact" min="0.1" max="4" step="0.05" value="1" />
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Detector</h4>
+        <div class="field">
+          <label for="detAngle">Screen angle (from beam) <span class="val" id="detVal">60°</span></label>
+          <input type="range" id="detAngle" min="0" max="180" step="1" value="60" />
+        </div>
+        <p style="color:var(--muted);font-size:12.5px;line-height:1.6;margin:0">
+          Drag to swing the detector around the foil. The readout shows how many α-particles strike
+          the screen at that angle.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h4>Display</h4>
+        <div class="switch-row"><span>Show particle tracks</span><div class="switch on" id="tPaths" role="switch" aria-checked="true" tabindex="0"></div></div>
+        <div class="switch-row"><span>Mark impact parameter</span><div class="switch" id="tImpact" role="switch" aria-checked="false" tabindex="0"></div></div>
+        <div class="switch-row"><span>Single-nucleus zoom</span><div class="switch" id="tZoom" role="switch" aria-checked="false" tabindex="0"></div></div>
+        <div class="switch-row"><span>Log-scale histogram</span><div class="switch on" id="tLogHist" role="switch" aria-checked="true" tabindex="0"></div></div>
+        <div class="switch-row"><span>Pause beam</span><div class="switch" id="tPause" role="switch" aria-checked="false" tabindex="0"></div></div>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <button class="btn" id="btnSingle" style="flex:1;justify-content:center">Fire one α</button>
+          <button class="btn ghost" id="btnReset" style="flex:1;justify-content:center">Reset</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Live readings</h4>
+        <div class="stats">
+          <div class="s"><span>α emitted</span><b id="rEmitted">0</b></div>
+          <div class="s"><span>θ &gt; 90°</span><b class="gold" id="rCount90">0</b></div>
+          <div class="s"><span>Back-scattered</span><b class="scint" id="rRatio">—</b></div>
+          <div class="s"><span>At detector</span><b id="rDet">0</b></div>
+          <div class="s"><span>Closest approach</span><b id="rClosest">—</b></div>
+          <div class="s"><span>r₀′ (collision radius)</span><b id="rR0">—</b></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Observation log</h4>
+        <div class="log" id="log"></div>
+      </div>
+
+    </aside>
+  </section>
+
+  <!-- ===================== PHYSICS NOTES ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>The physics behind the flashes</h2>
+        <p>Nothing here is scripted — the scattering angles come straight from Coulomb's law.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <span class="num">/ 01</span>
+        <h4>Two positive charges repel</h4>
+        <p>An α-particle carries charge +2e. A gold nucleus carries +79e. As the α-particle approaches a nucleus, the Coulomb force pushes it away, bending its path into a hyperbola.</p>
+        <div class="formula">F = k·q₁q₂ / r²</div>
+      </div>
+      <div class="note">
+        <span class="num">/ 02</span>
+        <h4>The impact parameter sets the angle</h4>
+        <p>How close the α-particle's aim passes to the nucleus — the impact parameter b — decides the scattering angle θ. A near head-on hit gives a large deflection.</p>
+        <div class="formula">tan(θ/2) = r₀′ / b</div>
+      </div>
+      <div class="note">
+        <span class="num">/ 03</span>
+        <h4>Why it is so rare</h4>
+        <p>A nucleus is about 10,000 times smaller than an atom. Almost every α-particle crosses the whole foil without ever getting close to a nucleus — so the striking events are rare.</p>
+        <div class="formula">σ(&gt;θ) = π·r₀′²·cot²(θ/2)</div>
+      </div>
+      <div class="note">
+        <span class="num">/ 04</span>
+        <h4>The famous law</h4>
+        <p>The number scattered at an angle falls off as 1/sin⁴(θ/2). The histogram you are filling should trace exactly this curve — that agreement is the evidence for a tiny, heavy, positively-charged nucleus.</p>
+        <div class="formula">dσ/dΩ ∝ 1 / sin⁴(θ/2)</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="conclusion">
+      <h3>What the experiment forces you to conclude</h3>
+      <p>
+        If the positive charge and mass of an atom were spread evenly through it — as Thomson's "plum-pudding"
+        model imagined — the electric field would be far too weak to throw a fast α-particle back. Every
+        particle would pass through with only a tiny nudge.
+      </p>
+      <p>
+        The fact that a few are deflected through large angles, and occasionally reversed, means the entire
+        positive charge and almost all the mass must be concentrated in a minute central core — the
+        <strong>nucleus</strong> — around which the electrons sit in mostly empty space. That is the model
+        you have just measured your way to.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Physics Visual Experience — Rutherford's Gold Foil Experiment.</span>
+    <span><a href="../index.html">← Back to the laboratory</a></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/gold-foil.js"></script>
+</body>
+</html>
