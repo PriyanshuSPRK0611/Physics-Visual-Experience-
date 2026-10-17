@@ -308,3 +308,88 @@ footer a { color: var(--gold); }
   .stats { grid-template-columns: 1fr; }
   .stat-strip { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   Boolean algebra lab (experiments/boolean-algebra.html)
+   ============================================================ */
+
+/* ---- input switches ---- */
+.bus { display: flex; gap: 16px; flex-wrap: wrap; }
+.ioswitch {
+  display: flex; align-items: center; gap: 13px; cursor: pointer;
+  padding: 14px 18px; border-radius: 12px; min-width: 168px;
+  border: 1px solid var(--line); background: rgba(255,255,255,0.03); transition: .15s;
+  user-select: none;
+}
+.ioswitch:hover { border-color: rgba(241,196,83,0.4); transform: translateY(-1px); }
+.ioswitch .nm { font-family: var(--display); font-size: 21px; font-weight: 600; width: 1.1em; }
+.ioswitch .vl { font-family: var(--mono); font-size: 25px; color: var(--muted); }
+.ioswitch.on .vl { color: var(--scint); }
+.ioswitch .st { margin-left: auto; width: 44px; height: 24px; border-radius: 999px; background: rgba(255,255,255,0.12); position: relative; transition: .15s; flex: none; }
+.ioswitch .st::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #cbd6e6; transition: .15s; }
+.ioswitch.on .st { background: rgba(116,255,176,0.3); }
+.ioswitch.on .st::after { left: 22px; background: var(--scint); box-shadow: 0 0 10px var(--scint); }
+
+/* ---- LED ---- */
+.led { width: 15px; height: 15px; border-radius: 50%; background: #12291c; border: 1px solid rgba(116,255,176,0.28); display: inline-block; transition: .12s; flex: none; }
+.led.on { background: var(--scint); box-shadow: 0 0 13px var(--scint); }
+
+/* ---- gate bench ---- */
+.gate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(228px, 1fr)); gap: 16px; }
+.gate-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); padding: 16px; display: flex; flex-direction: column; gap: 13px; }
+.gc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.gc-name { font-family: var(--display); font-weight: 600; font-size: 17px; }
+.gc-name small { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: .06em; font-weight: 400; margin-top: 2px; }
+.gc-sym { opacity: .95; flex: none; }
+.gc-io { display: flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.gc-io b { color: var(--ink); font-weight: 600; }
+.gc-out { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+/* ---- truth tables ---- */
+.truth-wrap { overflow: auto; }
+.truth { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; }
+.truth th, .truth td { padding: 5px 9px; text-align: center; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+.truth th { color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: .06em; position: sticky; top: 0; background: var(--panel-2); }
+.truth td { color: var(--ink); }
+.truth tr.active td { background: rgba(241,196,83,0.15); }
+.truth td.one { color: var(--scint); }
+.truth td.lab { color: var(--muted); text-align: right; }
+.truth .eq { color: var(--ok); }
+
+/* ---- expression lab ---- */
+.expr-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.expr-wrap .wide { grid-column: 1 / -1; }
+@media (max-width: 820px) { .expr-wrap { grid-template-columns: 1fr; } }
+.expr-row { display: flex; gap: 10px; }
+.expr { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; color: var(--ink); font-family: var(--mono); font-size: 16px; }
+.expr:focus { outline: none; border-color: rgba(241,196,83,0.55); }
+.op-help { color: var(--muted); font-size: 12.5px; line-height: 1.9; margin-top: 13px; }
+.op-help code { background: rgba(255,255,255,0.07); padding: 1px 6px; border-radius: 4px; font-family: var(--mono); font-size: 12px; color: var(--beam); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+.chip { font-family: var(--mono); font-size: 12px; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); cursor: pointer; color: var(--muted); transition: .15s; }
+.chip:hover { color: var(--ink); border-color: rgba(241,196,83,0.4); }
+.chip.pi { cursor: default; }
+.chip .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 7px; vertical-align: middle; }
+.status { font-family: var(--mono); font-size: 12.5px; margin-top: 13px; min-height: 1em; }
+.status.ok { color: var(--ok); }
+.status.err { color: var(--danger); }
+
+/* ---- K-map ---- */
+.kmap-wrap { overflow: auto; }
+.kmap { border-collapse: collapse; font-family: var(--mono); font-size: 13px; }
+.kmap th { color: var(--muted); font-size: 11px; padding: 5px 9px; font-weight: 600; }
+.kmap td { width: 50px; height: 44px; text-align: center; border: 1px solid var(--line); color: var(--muted); position: relative; transition: .12s; }
+.kmap td.one { color: var(--scint); background: rgba(116,255,176,0.06); }
+.kmap td.cur { outline: 2px solid var(--gold); outline-offset: -2px; z-index: 2; }
+.kmap td.pi { box-shadow: inset 0 0 0 2px var(--pc, rgba(90,209,255,0.7)); }
+.kmap td.dim { opacity: .22; }
+.kmap td.hot { background: rgba(90,209,255,0.22); }
+.kmap .cellidx { position: absolute; bottom: 1px; right: 3px; font-size: 8.5px; color: rgba(255,255,255,0.28); }
+
+/* ---- simplification readout ---- */
+.simp { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.simp .s { border: 1px solid var(--line-soft); border-radius: var(--r-sm); padding: 13px 15px; background: rgba(255,255,255,0.02); }
+.simp .s span { display: block; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.simp .s b, .simp .s .val { font-family: var(--mono); font-size: 15px; color: var(--ink); word-break: break-word; }
+.simp .s .val.gold { color: var(--gold); font-size: 17px; }
+.simp .s .val.scint { color: var(--scint); }

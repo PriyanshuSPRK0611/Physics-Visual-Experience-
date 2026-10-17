@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Boolean Algebra &amp; Logic Gates — Physics Visual Experience</title>
+<meta name="description" content="An interactive Boolean algebra lab: toggle logic gates, build truth tables, draw Karnaugh maps and simplify expressions with Quine-McCluskey — live." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='8' fill='%23f1c453'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(60 50 50)'/><ellipse cx='50' cy='50' rx='44' ry='18' fill='none' stroke='%23f1c453' stroke-width='4' transform='rotate(120 50 50)'/></svg>" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../index.html">
+      <span class="atom" aria-hidden="true"></span>
+      <span>Physics Visual Experience<small>Virtual Laboratory</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="gold-foil.html">Gold Foil Lab</a>
+      <a href="boolean-algebra.html" class="active">Boolean Lab</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section style="padding:26px 0 6px">
+    <div class="eyebrow">Experiment 02 · Electronics · Logic Gates</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div>
+        <h1 style="font-size:clamp(26px,4vw,40px)">Boolean Algebra &amp; Logic Gates</h1>
+        <p class="lead" style="margin-top:12px;max-width:72ch">
+          Boolean algebra is the mathematics of true and false — the language every digital circuit
+          is written in. Flip the switches, watch the gates respond, then type any expression and let
+          the lab build its truth table, draw its Karnaugh map and simplify it for you.
+        </p>
+      </div>
+      <span class="live"><span class="dot"></span> Board powered</span>
+    </div>
+  </section>
+
+  <!-- ===================== SIGNAL BUS ===================== -->
+  <section class="section" style="padding-top:10px">
+    <div class="panel">
+      <h4>Input switches — click to toggle</h4>
+      <div class="bus" id="bus"></div>
+      <p style="color:var(--muted);font-size:12.5px;margin:14px 0 0">
+        These switches drive the whole board. Flip one and every gate, every LED and every table below
+        updates instantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== GATE BENCH ===================== -->
+  <section class="section" style="padding-top:0">
+    <div class="section-head">
+      <div>
+        <h2>Logic gate bench</h2>
+        <p>Each gate shows its live inputs, its output LED and its truth table with the current row lit up.</p>
+      </div>
+    </div>
+    <div class="gate-grid" id="gateGrid"></div>
+  </section>
+
+  <!-- ===================== EXPRESSION LAB ===================== -->
+  <section class="section" style="padding-top:0">
+    <div class="section-head">
+      <div>
+        <h2>Boolean expression lab</h2>
+        <p>Type an expression in A, B, C, D. The lab evaluates it, tabulates it, maps it and simplifies it.</p>
+      </div>
+    </div>
+
+    <div class="expr-wrap">
+      <div class="panel wide">
+        <h4>Expression</h4>
+        <div class="expr-row">
+          <input id="exprInput" class="expr" value="A·B + ¬C" spellcheck="false" autocomplete="off" />
+          <button class="btn" id="exprGo">Evaluate</button>
+        </div>
+        <div class="op-help">
+          Operators: <code>·</code> <code>&amp;</code> <code>AND</code> &nbsp;·&nbsp;
+          <code>+</code> <code>|</code> <code>OR</code> &nbsp;·&nbsp;
+          <code>¬</code> <code>!</code> <code>NOT</code> &nbsp;·&nbsp;
+          <code>^</code> <code>XOR</code> &nbsp;·&nbsp; postfix <code>'</code> for NOT &nbsp;·&nbsp;
+          parentheses. Variables <code>A</code> <code>B</code> <code>C</code> <code>D</code>.
+        </div>
+        <div class="chips" id="examples"></div>
+        <div class="status" id="parseStatus"></div>
+      </div>
+
+      <div class="panel">
+        <h4>Truth table</h4>
+        <div class="truth-wrap" id="truthWrap"></div>
+      </div>
+
+      <div class="panel">
+        <h4>Karnaugh map</h4>
+        <div class="kmap-wrap" id="kmapWrap"></div>
+        <div class="chips" id="piChips"></div>
+      </div>
+
+      <div class="panel wide">
+        <h4>Simplification</h4>
+        <div id="simpWrap"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LAWS ===================== -->
+  <section class="section" style="padding-top:0">
+    <div class="section-head">
+      <div>
+        <h2>Laws &amp; identities</h2>
+        <p>Pick a law. The lab proves it row by row with a truth table — both sides must agree everywhere.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="seg" id="lawSeg"></div>
+      <div id="lawProof" style="margin-top:18px"></div>
+    </div>
+  </section>
+
+  <!-- ===================== NOTES ===================== -->
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>The ideas behind the board</h2>
+        <p>Boolean algebra has only two values, but that is enough to describe any digital circuit.</p>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <span class="num">/ 01</span>
+        <h4>Two values, three operations</h4>
+        <p>Every variable is 0 or 1. Everything else is built from NOT, AND and OR — the other gates are just convenient combinations of them.</p>
+        <div class="formula">AND · OR + NOT ¬</div>
+      </div>
+      <div class="note">
+        <span class="num">/ 02</span>
+        <h4>A truth table is the definition</h4>
+        <p>Two expressions are equal exactly when their truth tables match row for row. That is how every law on this page is proved.</p>
+      </div>
+      <div class="note">
+        <span class="num">/ 03</span>
+        <h4>De Morgan's theorems</h4>
+        <p>The two most useful identities in all of digital design — they let you swap AND for OR by moving the bar.</p>
+        <div class="formula">¬(A·B) = ¬A + ¬B<br>¬(A+B) = ¬A · ¬B</div>
+      </div>
+      <div class="note">
+        <span class="num">/ 04</span>
+        <h4>Why simplify?</h4>
+        <p>Each term is a logic gate. A simpler expression is fewer gates, less power and a faster circuit. The Karnaugh map and Quine–McCluskey method find the smallest form.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="conclusion">
+      <h3>From logic to silicon</h3>
+      <p>
+        Every processor, every memory chip and every microcontroller is, at the bottom, a vast pile of
+        Boolean expressions built from NOT, AND and OR. When you simplify an expression on this board,
+        you are doing by hand the same job a synthesis tool does when it turns a line of code into
+        transistors.
+      </p>
+      <p>
+        Flip the switches, watch the truth tables, and get a feel for how two values can be arranged into
+        logic — and how the right rearrangement makes it cheaper.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Physics Visual Experience — Boolean Algebra &amp; Logic Gates.</span>
+    <span><a href="../index.html">← Back to the laboratory</a></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="../assets/js/site.js"></script>
+<script src="../assets/js/boolean.js"></script>
+</body>
+</html>

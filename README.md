@@ -10,9 +10,22 @@ a canned animation. Every particle is computed in real time from the actual phys
 | # | Experiment | Chapter | Link |
 |---|------------|---------|------|
 | 01 | Rutherford's Gold Foil Experiment | Modern Physics · Atomic Structure | [`experiments/gold-foil.html`](experiments/gold-foil.html) |
+| 02 | Boolean Algebra & Logic Gates | Electronics · Logic Gates | [`experiments/boolean-algebra.html`](experiments/boolean-algebra.html) |
 
 More chapters (projectile motion, interference & diffraction, electromagnetic induction,
 photoelectric effect, simple harmonic motion) are listed on the home page as "in development".
+
+### Boolean algebra lab
+
+The logic lab has three live parts:
+
+- **Gate bench** — the seven basic gates (NOT, AND, OR, NAND, NOR, XOR, XNOR) driven by three
+  shared input switches, each with a live output LED and truth table.
+- **Expression lab** — type any Boolean expression in A–D (operators `·` `+` `¬` `^`, plus `AND`
+  `OR` `NOT` `XOR`, postfix `'`, and parentheses). The lab parses it, builds the truth table and
+  Karnaugh map, and simplifies it to a minimal sum-of-products with the Quine–McCluskey method.
+- **Law verifier** — proofs of the standard identities (including both De Morgan theorems) shown
+  row by row, with both sides of each identity checked against every input combination.
 
 ## What makes it feel like a real lab
 
@@ -86,11 +99,13 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html                     landing page + chapter index
-experiments/gold-foil.html     the experiment page
-assets/css/style.css           shared design system
-assets/js/site.js              small shared helpers
-assets/js/gold-foil.js         the simulation engine (physics + rendering)
+index.html                        landing page + chapter index
+experiments/gold-foil.html        Rutherford gold foil experiment
+experiments/boolean-algebra.html  Boolean algebra & logic gates lab
+assets/css/style.css              shared design system
+assets/js/site.js                 small shared helpers
+assets/js/gold-foil.js            gold-foil simulation engine
+assets/js/boolean.js              Boolean parser, truth tables, Quine-McCluskey, K-map
 ```
 
 ## Hosting
