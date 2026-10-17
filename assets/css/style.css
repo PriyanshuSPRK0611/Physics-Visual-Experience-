@@ -335,8 +335,8 @@ footer a { color: var(--gold); }
 .led.on { background: var(--scint); box-shadow: 0 0 13px var(--scint); }
 
 /* ---- gate bench ---- */
-.gate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(228px, 1fr)); gap: 16px; }
-.gate-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); padding: 16px; display: flex; flex-direction: column; gap: 13px; }
+.gate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(196px, 1fr)); gap: 12px; }
+.gate-card { border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); padding: 13px; display: flex; flex-direction: column; gap: 10px; }
 .gc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .gc-name { font-family: var(--display); font-weight: 600; font-size: 17px; }
 .gc-name small { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: .06em; font-weight: 400; margin-top: 2px; }
@@ -402,3 +402,22 @@ footer a { color: var(--gold); }
   touch-action: none;
 }
 #boardCanvas { display: block; width: 100%; cursor: default; }
+
+/* ---- tabbed workbench ---- */
+.intro { padding: 22px 0 4px; }
+.bus-panel { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 16px; }
+.bus-panel h4 { margin: 0; }
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; margin: 16px 0;
+  border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.03);
+}
+.tabs button {
+  flex: 1; min-width: 108px; border: 0; background: transparent; color: var(--muted);
+  font-family: var(--sans); font-weight: 600; font-size: 13.5px; padding: 10px 12px;
+  border-radius: 8px; cursor: pointer; transition: .15s;
+}
+.tabs button:hover { color: var(--ink); background: rgba(255,255,255,0.05); }
+.tabs button.on { background: rgba(241,196,83,0.16); color: var(--gold); }
+.hint { color: var(--muted); font-size: 12.5px; line-height: 1.8; margin: 12px 0 0; }
+.builder-grid { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(258px, 1fr); gap: 14px; margin-top: 14px; align-items: start; }
+@media (max-width: 900px) { .builder-grid { grid-template-columns: 1fr; } }

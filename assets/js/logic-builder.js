@@ -396,20 +396,20 @@
   }
   function presetDeMorgan() {
     clearBoard();
-    var A = addNode('IN', 40, 70), B = addNode('IN', 40, 250);
-    var nd = addNode('NAND', 240, 70), Y1 = addNode('OUT', 440, 70);
-    var na = addNode('NOT', 200, 210), nb = addNode('NOT', 200, 320);
-    var or = addNode('OR', 400, 260), Y2 = addNode('OUT', 580, 260);
+    var A = addNode('IN', 30, 60), B = addNode('IN', 30, 215);
+    var nd = addNode('NAND', 225, 60), Y1 = addNode('OUT', 420, 60);
+    var na = addNode('NOT', 185, 180), nb = addNode('NOT', 185, 285);
+    var or = addNode('OR', 380, 230), Y2 = addNode('OUT', 560, 230);
     connect(A, nd, 0); connect(B, nd, 1); connect(nd, Y1, 0);
     connect(A, na, 0); connect(B, nb, 0);
     connect(na, or, 0); connect(nb, or, 1); connect(or, Y2, 0);
   }
   function presetMux() {
     clearBoard();
-    var A = addNode('IN', 40, 70), B = addNode('IN', 40, 250), S = addNode('IN', 40, 400);
-    var ns = addNode('NOT', 200, 400);
-    var a1 = addNode('AND', 340, 70), a2 = addNode('AND', 340, 250);
-    var or = addNode('OR', 540, 160), Y = addNode('OUT', 700, 160);
+    var A = addNode('IN', 30, 50), B = addNode('IN', 30, 165), S = addNode('IN', 30, 280);
+    var ns = addNode('NOT', 175, 280);
+    var a1 = addNode('AND', 310, 50), a2 = addNode('AND', 310, 165);
+    var or = addNode('OR', 500, 108), Y = addNode('OUT', 660, 108);
     connect(S, ns, 0);
     connect(A, a1, 0); connect(ns, a1, 1);
     connect(B, a2, 0); connect(S, a2, 1);
@@ -421,7 +421,7 @@
     var wrap = document.getElementById('boardWrap');
     var r = wrap.getBoundingClientRect();
     W = Math.max(320, Math.floor(r.width));
-    H = Math.round(Math.min(560, Math.max(420, W * 0.5)));
+    H = Math.round(Math.min(430, Math.max(350, W * 0.44)));
     dpr = Math.min(2, window.devicePixelRatio || 1);
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
@@ -469,7 +469,7 @@
   }
 
   function loop() {
-    draw();
+    if (canvas.offsetParent !== null) draw();   // skip while the tab is hidden
     requestAnimationFrame(loop);
   }
 
