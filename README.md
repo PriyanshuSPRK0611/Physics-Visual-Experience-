@@ -21,6 +21,10 @@ The logic lab has three live parts:
 
 - **Gate bench** — the seven basic gates (NOT, AND, OR, NAND, NOR, XOR, XNOR) driven by three
   shared input switches, each with a live output LED and truth table.
+- **Circuit builder** — place gates on a board, drag an output port to an input port to wire them,
+  flip the input switches and watch the signals propagate live. The board also enumerates the whole
+  circuit's truth table. Presets include a half adder, an OR built only from NANDs, a De Morgan demo
+  and a 2:1 multiplexer.
 - **Expression lab** — type any Boolean expression in A–D (operators `·` `+` `¬` `^`, plus `AND`
   `OR` `NOT` `XOR`, postfix `'`, and parentheses). The lab parses it, builds the truth table and
   Karnaugh map, and simplifies it to a minimal sum-of-products with the Quine–McCluskey method.

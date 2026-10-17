@@ -67,6 +67,32 @@
     <div class="gate-grid" id="gateGrid"></div>
   </section>
 
+  <!-- ===================== CIRCUIT BUILDER ===================== -->
+  <section class="section" style="padding-top:0">
+    <div class="section-head">
+      <div>
+        <h2>Logic gate circuit builder</h2>
+        <p>Drop gates onto the board, wire an output to an input, and watch the signals run. The board also works out the circuit's complete truth table.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="palette" id="palette"></div>
+      <div class="palette" id="presets" style="margin-top:10px"></div>
+      <div class="canvas-wrap" id="boardWrap" style="margin-top:14px">
+        <canvas id="boardCanvas"></canvas>
+      </div>
+      <p style="color:var(--muted);font-size:12.5px;line-height:1.8;margin:12px 0 0">
+        Click a switch to flip it &nbsp;·&nbsp; drag a block to move it &nbsp;·&nbsp;
+        drag from an output dot to an input dot to wire them &nbsp;·&nbsp;
+        click a wire to delete it &nbsp;·&nbsp; hover a block and click its × to remove it.
+      </p>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <h4>Circuit truth table</h4>
+      <div class="truth-wrap" id="circuitTruth"></div>
+    </div>
+  </section>
+
   <!-- ===================== EXPRESSION LAB ===================== -->
   <section class="section" style="padding-top:0">
     <div class="section-head">
@@ -188,5 +214,6 @@
 <div class="toast" id="toast"></div>
 <script src="../assets/js/site.js"></script>
 <script src="../assets/js/boolean.js"></script>
+<script src="../assets/js/logic-builder.js"></script>
 </body>
 </html>

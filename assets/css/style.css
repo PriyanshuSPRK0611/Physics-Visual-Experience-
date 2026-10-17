@@ -393,3 +393,12 @@ footer a { color: var(--gold); }
 .simp .s b, .simp .s .val { font-family: var(--mono); font-size: 15px; color: var(--ink); word-break: break-word; }
 .simp .s .val.gold { color: var(--gold); font-size: 17px; }
 .simp .s .val.scint { color: var(--scint); }
+
+/* ---- circuit builder ---- */
+.palette { display: flex; flex-wrap: wrap; gap: 8px; }
+.canvas-wrap {
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+  background: radial-gradient(120% 120% at 50% 0%, #0b1220 0%, #060a12 72%);
+  touch-action: none;
+}
+#boardCanvas { display: block; width: 100%; cursor: default; }
